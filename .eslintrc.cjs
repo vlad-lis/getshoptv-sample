@@ -4,35 +4,51 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    "airbnb",
-    "airbnb-typescript",
-    "airbnb/hooks",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
+    'airbnb',
+    'airbnb-typescript',
+    'airbnb/hooks',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
   ],
   overrides: [
     {
       env: {
         node: true,
       },
-      files: [".eslintrc.{js,cjs}"],
+      files: ['.eslintrc.{js,cjs}'],
       parserOptions: {
-        sourceType: "script",
+        sourceType: 'script',
       },
     },
   ],
-  parser: "@typescript-eslint/parser",
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    project: "./tsconfig.json",
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: './tsconfig.json',
     tsconfigRootDir: __dirname,
   },
-  plugins: ["react", "@typescript-eslint", "prettier"],
+  plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
-    "react/react-in-jsx-scope": 0,
-    "react/function-component-definition": "off",
+    'react/react-in-jsx-scope': 0,
+    'react/function-component-definition': 'off',
+    'jsx-a11y/label-has-associated-control': [
+      'error',
+      {
+        required: {
+          some: ['nesting', 'id'],
+        },
+      },
+    ],
+    'jsx-a11y/label-has-for': [
+      'error',
+      {
+        required: {
+          some: ['nesting', 'id'],
+        },
+      },
+    ],
   },
-  ignorePatterns: ["vite.config.ts"],
+  ignorePatterns: ['vite.config.ts'],
 };
