@@ -1,0 +1,50 @@
+.banner {
+  background-color: var(--light-blue);
+  color: var(--black);
+  max-width: 231px;
+  padding: 30px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  &__title {
+    margin: 0;
+    font: var(--font-h1-16-100-500);
+    text-align: center;
+  }
+
+  &__qr {
+    background-image: url('../../images/banner-qr-code.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 126px;
+    height: 126px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__subtitle {
+    margin: 0;
+    max-width: 126px;
+    font: var(--font-p-14-100-400);
+    text-align: center;
+  }
+
+  &__btn {
+    width: 156px;
+    height: 52px;
+    border: none;
+    padding: 0;
+    background-color: var(--black);
+    color: var(--light-blue);
+    font: var(--font-h1-16-100-500);
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

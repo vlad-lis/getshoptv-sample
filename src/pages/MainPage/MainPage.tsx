@@ -1,9 +1,10 @@
 import { ReactElement } from 'react';
+import Banner from '../../components/Banner/Banner';
 
 const MainPage = (): ReactElement => {
   return (
     <div>
-      <p>main page</p>
+      <Banner />
     </div>
   );
 };
