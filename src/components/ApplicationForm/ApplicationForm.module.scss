@@ -1,0 +1,103 @@
+.form {
+  width: calc(29% - 40px);
+  height: 100vh;
+  max-height: 640px;
+  padding: 40px 24px;
+  background-color: var(--light-blue);
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  align-items: center;
+
+  &__phoneFieldset {
+    max-width: 272px;
+    color: var(--black);
+    margin: 0;
+    padding: 0;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+  }
+
+  &__phoneLabel {
+    font: var(--font-p-26-100-400);
+    text-align: center;
+  }
+
+  &__phoneSublabel {
+    font: var(--font-p-14-100-400);
+    text-align: center;
+  }
+
+  &__numInput {
+    padding: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  &__numBtn {
+    width: 88px;
+    height: 52px;
+    border: none;
+    padding: 0;
+    background-color: var(--light-blue);
+    font: var(--font-h1-16-100-500);
+    border: 2px solid var(--black);
+  }
+
+  &__eraseBtn {
+    width: 186px;
+  }
+
+  &__pdFieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+    max-width: 284px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__pdCheckbox {
+    width: 40px;
+    height: 40px;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      border: 2px solid var(--black);
+      background-color: var(--light-blue);
+    }
+
+    &:checked::before {
+      background-image: url('../../images/pd-checkbox-checked.svg');
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+
+  &__pdLabel {
+    margin: 0;
+    max-width: 214px;
+    font: var(--font-p-14-100-400);
+    color: var(--grey);
+    text-align: left;
+  }
+
+  &__submitBtn {
+    margin-top: 10px;
+    width: 284px;
+    height: 52px;
+    border: none;
+    padding: 0;
+    background-color: var(--black);
+    font: var(--font-h1-16-100-500);
+    color: var(--white);
+  }
+}
