@@ -1,7 +1,13 @@
 import { ReactElement } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import RoutesComponent from '../RoutesComponent/RoutesComponent';
 
 const App = (): ReactElement => {
-  return <p>App</p>;
+  return (
+    <BrowserRouter>
+      <RoutesComponent />
+    </BrowserRouter>
+  );
 };
 
 export default App;
