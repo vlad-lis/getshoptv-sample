@@ -8,6 +8,7 @@
   flex-direction: column;
   gap: 13px;
   align-items: center;
+  justify-content: center;
 
   &__phoneFieldset {
     max-width: 272px;
@@ -60,6 +61,20 @@
     background-color: var(--light-blue);
     font: var(--font-h1-16-100-500);
     border: 2px solid var(--black);
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:active {
+      background-color: var(--black);
+      color: var(--white);
+    }
+
+    &_active {
+      background-color: var(--black);
+      color: var(--white);
+    }
   }
 
   &__eraseBtn {

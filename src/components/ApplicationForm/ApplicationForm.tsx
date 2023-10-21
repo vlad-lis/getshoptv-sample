@@ -1,9 +1,22 @@
-import { ReactElement, useEffect } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import { useMask } from '@react-input/mask';
 import styles from './ApplicationForm.module.scss';
 import findLastDigitIndex from '../../utils/helpers';
 
 const ApplicationForm = (): ReactElement => {
+  // state for handling button css on keydown
+  const [activeButtons, setActiveButtons] = useState<{
+    [key: string]: boolean;
+  }>({});
+
+  // handling css on keydown
+  const numBtnClass = (number: string) =>
+    `${styles.form__numBtn}
+    ${activeButtons[number] && styles.form__numBtn_active}`;
+
+  const eraseBtnClass = `${styles.form__numBtn} ${styles.form__eraseBtn}
+    ${activeButtons.Backspace && styles.form__numBtn_active}`;
+
   // phone number mask
   const inputRef = useMask({
     mask: '+7(___)___-__-__',
@@ -27,7 +40,7 @@ const ApplicationForm = (): ReactElement => {
       const maskedValue = inputRef.current.value;
       const lastDigitIndex = findLastDigitIndex(maskedValue);
 
-      // erase last digit, but leave the first one
+      // erase last digit, but ignore the first one (code)
       if (lastDigitIndex && lastDigitIndex !== -1 && lastDigitIndex !== 1) {
         const newValue = `${maskedValue.substring(
           0,
@@ -44,15 +57,26 @@ const ApplicationForm = (): ReactElement => {
       const { key } = event;
       if (/[0-9]/.test(key)) {
         handleNumberButtonClick(key);
+        setActiveButtons((prev) => ({ ...prev, [key]: true }));
       } else if (key === 'Backspace') {
         handleEraseButtonClick();
+        setActiveButtons((prev) => ({ ...prev, [key]: true }));
+      }
+    };
+
+    const handleKeyUp = (event: KeyboardEvent) => {
+      const { key } = event;
+      if (/[0-9]/.test(key) || key === 'Backspace') {
+        setActiveButtons((prev) => ({ ...prev, [key]: false }));
       }
     };
 
     document.addEventListener('keydown', handleKeyPress);
+    document.addEventListener('keyup', handleKeyUp);
 
     return () => {
       document.removeEventListener('keydown', handleKeyPress);
+      document.removeEventListener('keyup', handleKeyUp);
     };
   });
 
@@ -76,7 +100,7 @@ const ApplicationForm = (): ReactElement => {
         {numberButtons.map((number) => (
           <button
             key={number}
-            className={styles.form__numBtn}
+            className={numBtnClass(number)}
             type='button'
             onClick={() => handleNumberButtonClick(number)}
           >
@@ -84,14 +108,14 @@ const ApplicationForm = (): ReactElement => {
           </button>
         ))}
         <button
-          className={`${styles.form__numBtn} ${styles.form__eraseBtn}`}
+          className={eraseBtnClass}
           type='button'
           onClick={handleEraseButtonClick}
         >
           СТЕРЕТЬ
         </button>
         <button
-          className={styles.form__numBtn}
+          className={numBtnClass('0')}
           type='button'
           onClick={() => handleNumberButtonClick('0')}
         >
