@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import RoutesComponent from '../RoutesComponent/RoutesComponent';
+import RoutesComponent from './components/RoutesComponent/RoutesComponent';
 
 const App = (): ReactElement => {
   return (
