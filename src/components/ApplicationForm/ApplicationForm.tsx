@@ -1,10 +1,14 @@
 import { ReactElement, useEffect, useState } from 'react';
 import { useMask } from '@react-input/mask';
+import { useDispatch } from 'react-redux';
+import { setSuccessfulSubmit } from '../../store/applicationFormSlice';
 import styles from './ApplicationForm.module.scss';
 import { findLastDigitIndex, parsePhoneNumber } from '../../utils/helpers';
 import validatePhoneNumber from '../../utils/numverifyValidation';
 
 const ApplicationForm = (): ReactElement => {
+  const dispatch = useDispatch();
+
   // state for valid number and valid form
   const [isNumberValid, setIsNumberValid] = useState(false);
   const [isErrorShown, setIsErrorShown] = useState(false);
@@ -135,14 +139,12 @@ const ApplicationForm = (): ReactElement => {
   });
 
   // submit form
-  const handleSubmitBtn: React.MouseEventHandler<HTMLButtonElement> = async (
+  const handleSubmitBtn: React.MouseEventHandler<HTMLButtonElement> = (
     event
   ) => {
     event.preventDefault();
-    if (inputRef.current) {
-      const parsedPhoneNumber = parsePhoneNumber(inputRef.current.value);
-      const validationData = await validatePhoneNumber(parsedPhoneNumber);
-      console.log(validationData);
+    if (isFormValid) {
+      dispatch(setSuccessfulSubmit());
     }
   };
 

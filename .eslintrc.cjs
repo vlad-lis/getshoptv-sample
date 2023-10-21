@@ -33,6 +33,7 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 0,
     'react/function-component-definition': 'off',
+    'no-param-reassign': 'off',
     'jsx-a11y/label-has-associated-control': [
       'error',
       {
