@@ -33,6 +33,10 @@
     &:focus {
       outline: none;
     }
+
+    &_invalid {
+      color: var(--red);
+    }
   }
 
   &__phoneLabel {
@@ -125,8 +129,15 @@
     height: 52px;
     border: none;
     padding: 0;
-    background-color: var(--black);
     font: var(--font-h1-16-100-500);
-    color: var(--white);
+    background-color: var(--light-blue);
+    border: 1px solid var(--dark-grey);
+    color: var(--dark-grey);
+
+    &_active {
+      background-color: var(--black);
+      color: var(--white);
+      border: none;
+    }
   }
 }

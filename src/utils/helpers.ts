@@ -1,5 +1,5 @@
-// find index of the last digit in a string
-const findLastDigitIndex = (str: string): number => {
+// find index of the last digit in a string (for backspace button)
+export const findLastDigitIndex = (str: string): number => {
   let i = str.length - 1;
 
   while (i >= 0) {
@@ -12,4 +12,7 @@ const findLastDigitIndex = (str: string): number => {
   return -1;
 };
 
-export default findLastDigitIndex;
+// get phone number for numveriry request
+export const parsePhoneNumber = (number: string): string => {
+  return number.replace(/\D/g, '');
+};
