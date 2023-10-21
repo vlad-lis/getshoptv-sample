@@ -2,6 +2,7 @@ import { ReactElement } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import useArrowNavigation from '../../utils/useArrowNavHook';
 import styles from './PromoPage.module.scss';
 import ApplicationForm from '../../components/ApplicationForm/ApplicationForm';
 import PromoQrBox from '../../components/PromoQrBox/PromoQrBox';
@@ -16,8 +17,10 @@ const PromoPage = (): ReactElement => {
     (state: RootState) => state.applicationForm.successfulSubmit
   );
 
+  const parentRef = useArrowNavigation({ selectors: 'button' });
+
   return (
-    <main className={styles.promo}>
+    <main className={styles.promo} ref={parentRef}>
       {successfulSubmit ? <SuccessFormSubmitMsg /> : <ApplicationForm />}
       <div className={styles.promo__qr}>
         <PromoQrBox />

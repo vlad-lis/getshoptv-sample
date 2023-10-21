@@ -66,6 +66,12 @@
     font: var(--font-h1-16-100-500);
     border: 2px solid var(--black);
 
+    &:focus {
+      background-color: var(--black);
+      color: var(--white);
+      outline: none;
+    }
+
     &:hover {
       cursor: pointer;
     }
