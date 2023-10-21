@@ -4,4 +4,17 @@
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
+  position: relative;
+
+  &__qr {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+  }
+
+  &__closeBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
 }

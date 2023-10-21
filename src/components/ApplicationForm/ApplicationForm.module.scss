@@ -85,6 +85,17 @@
     width: 186px;
   }
 
+  &__error {
+    margin: 0;
+    width: 284px;
+    height: 40px;
+    font: var(--font-h1-16-100-500);
+    color: var(--red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   &__pdFieldset {
     margin: 0;
     padding: 0;

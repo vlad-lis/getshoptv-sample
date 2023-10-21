@@ -1,0 +1,22 @@
+.qrbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &__title {
+    margin: 0;
+    font: var(--font-h1-16-100-500);
+    color: var(--white);
+    max-width: 194px;
+    text-align: right;
+  }
+
+  &__qr {
+    background-image: url('../../images/promo-qr-code.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 110px;
+    height: 110px;
+  }
+}

@@ -7,6 +7,7 @@ import validatePhoneNumber from '../../utils/numverifyValidation';
 const ApplicationForm = (): ReactElement => {
   // state for valid number and valid form
   const [isNumberValid, setIsNumberValid] = useState(false);
+  const [isErrorShown, setIsErrorShown] = useState(false);
   const [isPdBtnChecked, setIsPdBtnChecked] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
 
@@ -45,7 +46,6 @@ const ApplicationForm = (): ReactElement => {
   // number validation function
   const runNumberValidation = async (number: string): Promise<void> => {
     const validationData = await validatePhoneNumber(number);
-    console.log(validationData);
 
     if (
       validationData &&
@@ -54,11 +54,14 @@ const ApplicationForm = (): ReactElement => {
     ) {
       setPhoneInputClass(styles.form__phoneInput);
       setIsNumberValid(true);
+      setIsErrorShown(false);
     } else {
       setPhoneInputClass(
         `${styles.form__phoneInput} ${styles.form__phoneInput_invalid}`
       );
       setIsNumberValid(false);
+      setIsErrorShown(true);
+      setIsPdBtnChecked(false);
     }
   };
 
@@ -196,17 +199,22 @@ const ApplicationForm = (): ReactElement => {
         </button>
       </div>
 
-      <fieldset className={styles.form__pdFieldset}>
-        <input
-          className={styles.form__pdCheckbox}
-          id='pd-checkbox'
-          type='checkbox'
-          onClick={handlePdCheckboxClick}
-        />
-        <label htmlFor='pd-checkbox' className={styles.form__pdLabel}>
-          Согласие на обработку персональных данных
-        </label>
-      </fieldset>
+      {isErrorShown ? (
+        <div className={styles.form__error}>НЕВЕРНО ВВЁДЕН НОМЕР</div>
+      ) : (
+        <fieldset className={styles.form__pdFieldset}>
+          <input
+            className={styles.form__pdCheckbox}
+            id='pd-checkbox'
+            type='checkbox'
+            onClick={handlePdCheckboxClick}
+          />
+          <label htmlFor='pd-checkbox' className={styles.form__pdLabel}>
+            Согласие на обработку персональных данных
+          </label>
+        </fieldset>
+      )}
+
       <button
         className={submitBtnClass}
         type='submit'
