@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import TCloseBtnProps from '../../../types/TCloseButtonProps';
+import { TCloseBtnProps } from '../../../types/types';
 import styles from './WhiteCloseBtn.module.scss';
 
 const WhiteCloseBtn = ({ onClick }: TCloseBtnProps): ReactElement => {

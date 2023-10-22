@@ -1,22 +1,9 @@
 import { RefObject, useEffect, useRef } from 'react';
-
-type THandleEnterPressParams = {
-  event: KeyboardEvent;
-  currentIndex: number;
-  activeElement: Element | null;
-};
-
-type THandleArrowKeyPressParams = {
-  event: KeyboardEvent;
-  currentIndex: number;
-  availableElements: NodeListOf<Element>;
-};
-
-type THandleEventsParams = {
-  event: KeyboardEvent;
-  parentNode: Element;
-  selectors: string;
-};
+import {
+  THandleEnterPressParams,
+  THandleArrowKeyPressParams,
+  THandleEventsParams,
+} from '../types/useArrowNavHookTypes';
 
 const handleEnterPress = ({
   event,

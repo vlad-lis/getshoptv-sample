@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { setSuccessfulSubmit } from '../../store/applicationFormSlice';
 import { findLastDigitIndex, parsePhoneNumber } from '../../utils/helpers';
 import validatePhoneNumber from '../../utils/numverifyValidation';
-import TButtonRefs from '../../types/TButtonRefs';
+import { TButtonRefs } from '../../types/types';
 import styles from './ApplicationForm.module.scss';
 
 const ApplicationForm = (): ReactElement => {

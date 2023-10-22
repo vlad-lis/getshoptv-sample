@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import TApplicationFormState from '../types/TApplicationFormState';
+import { TApplicationFormState } from '../types/types';
 
 const initialState: TApplicationFormState = {
   successfulSubmit: false,
