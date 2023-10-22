@@ -57,8 +57,9 @@ const MainPage = (): ReactElement => {
       };
     }
 
+    setIsBannerVisible(true);
     return () => {};
-  }, []);
+  }, [videoPausedAt]);
 
   return (
     <main className={styles.main} ref={parentRef}>
