@@ -71,6 +71,8 @@ const ApplicationForm = (): ReactElement => {
       return;
     }
 
+    setIsValidationDone(true);
+
     const validationData = await validatePhoneNumber(number);
 
     if (
@@ -81,7 +83,6 @@ const ApplicationForm = (): ReactElement => {
       setPhoneInputClass(styles.form__phoneInput);
       setIsNumberValid(true);
       setIsErrorShown(false);
-      setIsValidationDone(true);
     } else {
       setPhoneInputClass(
         `${styles.form__phoneInput} ${styles.form__phoneInput_invalid}`
@@ -89,7 +90,6 @@ const ApplicationForm = (): ReactElement => {
       setIsNumberValid(false);
       setIsErrorShown(true);
       setIsPdBtnChecked(false);
-      setIsValidationDone(true);
     }
   };
 
