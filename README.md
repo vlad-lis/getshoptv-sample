@@ -42,4 +42,4 @@ npm i
 npm run dev
 ```
 
-Проект запустится локально адресу http://localhost:5173/
+Проект запустится локально адресу http://localhost:5173/getshoptv-task/
