@@ -1,9 +1,14 @@
 import { ReactElement, useEffect, useState } from 'react';
+import useArrowNavigation from '../../utils/useArrowNavHook';
 import Banner from '../../components/Banner/Banner';
 import styles from './MainPage.module.scss';
 import doggieSource from '../../videos/doggie.mp4';
 
 const MainPage = (): ReactElement => {
+  const parentRef = useArrowNavigation({
+    selectors: 'button, input[type="checkbox"]',
+  });
+
   // banner visibility
   const [isBannerVisible, setIsBannerVisible] = useState(false);
   const bannerClass = isBannerVisible
@@ -23,7 +28,7 @@ const MainPage = (): ReactElement => {
   });
 
   return (
-    <main className={styles.main}>
+    <main className={styles.main} ref={parentRef}>
       <video className={styles.main__video} autoPlay muted loop>
         <source src={doggieSource} type='video/mp4' />
         oh no
