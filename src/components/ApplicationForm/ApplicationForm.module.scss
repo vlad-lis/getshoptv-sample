@@ -82,8 +82,8 @@
     }
 
     &_active {
-      background-color: var(--black);
-      color: var(--white);
+      background-color: var(--light-blue) !important;
+      color: var(--black) !important;
     }
   }
 

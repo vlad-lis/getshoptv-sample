@@ -1,9 +1,10 @@
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState, useRef } from 'react';
 import { useMask } from '@react-input/mask';
 import { useDispatch } from 'react-redux';
 import { setSuccessfulSubmit } from '../../store/applicationFormSlice';
 import { findLastDigitIndex, parsePhoneNumber } from '../../utils/helpers';
 import validatePhoneNumber from '../../utils/numverifyValidation';
+import TButtonRefs from '../../types/TButtonRefs';
 import styles from './ApplicationForm.module.scss';
 
 const ApplicationForm = (): ReactElement => {
@@ -14,6 +15,21 @@ const ApplicationForm = (): ReactElement => {
   const [isErrorShown, setIsErrorShown] = useState(false);
   const [isPdBtnChecked, setIsPdBtnChecked] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
+
+  // refs for setting focus on pushed button
+  const buttonRefs: TButtonRefs = {
+    '1': useRef(null),
+    '2': useRef(null),
+    '3': useRef(null),
+    '4': useRef(null),
+    '5': useRef(null),
+    '6': useRef(null),
+    '7': useRef(null),
+    '8': useRef(null),
+    '9': useRef(null),
+    '0': useRef(null),
+    Backspace: useRef(null),
+  };
 
   // phone number mask
   const inputRef = useMask({
@@ -75,6 +91,9 @@ const ApplicationForm = (): ReactElement => {
       inputRef.current.value = inputRef.current.value.replace(/_/, number);
     }
 
+    // set focus on the button
+    buttonRefs[number].current?.focus();
+
     // run validation on last digit input
     if (
       inputRef.current?.value.length === 16 &&
@@ -89,6 +108,9 @@ const ApplicationForm = (): ReactElement => {
     if (inputRef.current) {
       const maskedValue = inputRef.current.value;
       const lastDigitIndex = findLastDigitIndex(maskedValue);
+
+      // set focus on backspace
+      buttonRefs.Backspace.current?.focus();
 
       // erase last digit, but ignore the first one (country code)
       if (lastDigitIndex && lastDigitIndex !== -1 && lastDigitIndex !== 1) {
@@ -178,6 +200,7 @@ const ApplicationForm = (): ReactElement => {
         {numberButtons.map((number) => (
           <button
             key={number}
+            ref={buttonRefs[number]}
             className={numBtnClass(number)}
             type='button'
             onClick={() => handleNumberButtonClick(number)}
@@ -186,6 +209,7 @@ const ApplicationForm = (): ReactElement => {
           </button>
         ))}
         <button
+          ref={buttonRefs.Backspace}
           className={eraseBtnClass}
           type='button'
           onClick={handleEraseButtonClick}
@@ -193,6 +217,7 @@ const ApplicationForm = (): ReactElement => {
           СТЕРЕТЬ
         </button>
         <button
+          ref={buttonRefs['0']}
           className={numBtnClass('0')}
           type='button'
           onClick={() => handleNumberButtonClick('0')}
