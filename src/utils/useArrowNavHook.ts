@@ -1,5 +1,11 @@
 import { RefObject, useEffect, useRef } from 'react';
 
+type THandleEnterPressParams = {
+  event: KeyboardEvent;
+  currentIndex: number;
+  activeElement: Element | null;
+};
+
 type THandleArrowKeyPressParams = {
   event: KeyboardEvent;
   currentIndex: number;
@@ -10,6 +16,22 @@ type THandleEventsParams = {
   event: KeyboardEvent;
   parentNode: Element;
   selectors: string;
+};
+
+const handleEnterPress = ({
+  event,
+  currentIndex,
+  activeElement,
+}: THandleEnterPressParams) => {
+  if (currentIndex === -1 || activeElement === null) {
+    return;
+  }
+
+  const element = activeElement as HTMLElement;
+  if (element) {
+    event.preventDefault();
+    element.click();
+  }
 };
 
 const handleArrowKeyPress = ({
@@ -27,7 +49,14 @@ const handleArrowKeyPress = ({
     const indexOffset = isArrowDownOrRight ? 1 : -1;
     let nextIndex = currentIndex + indexOffset;
 
-    // avoid disabled buttons; loop stops at first enabled button
+    // make navigation infinite (handle reaching end of elements array)
+    if (nextIndex < 0) {
+      nextIndex = availableElements.length - 1;
+    } else if (nextIndex >= availableElements.length) {
+      nextIndex = 0;
+    }
+
+    // avoid disabled buttons; loop stops at first enabled element
     while (nextIndex >= 0 && nextIndex < availableElements.length) {
       nextElement = availableElements[nextIndex] as HTMLButtonElement;
       if (!nextElement.disabled) {
@@ -55,18 +84,27 @@ const handleEvents = ({
     (element) => element === activeElement
   );
 
-  // if parent component not in focus, focus the first button in availableElements
-  if (activeElement !== parentNode) {
+  // if no element from availableElements is in focus, focus the first one
+  const elements = Array.from(availableElements);
+
+  if (activeElement && !elements.includes(activeElement)) {
     (availableElements[0] as HTMLElement).focus();
   }
 
+  // do nothing when no available elements or other buttons pressed
   if (
-    !['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(key) ||
+    !['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Enter'].includes(
+      key
+    ) ||
     !parentNode ||
     !parentNode.contains(activeElement) ||
     !availableElements.length
   ) {
     return;
+  }
+
+  if (key === 'Enter') {
+    handleEnterPress({ event, currentIndex, activeElement });
   }
 
   handleArrowKeyPress({ event, currentIndex, availableElements });

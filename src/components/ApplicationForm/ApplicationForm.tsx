@@ -2,9 +2,9 @@ import { ReactElement, useEffect, useState } from 'react';
 import { useMask } from '@react-input/mask';
 import { useDispatch } from 'react-redux';
 import { setSuccessfulSubmit } from '../../store/applicationFormSlice';
-import styles from './ApplicationForm.module.scss';
 import { findLastDigitIndex, parsePhoneNumber } from '../../utils/helpers';
 import validatePhoneNumber from '../../utils/numverifyValidation';
+import styles from './ApplicationForm.module.scss';
 
 const ApplicationForm = (): ReactElement => {
   const dispatch = useDispatch();

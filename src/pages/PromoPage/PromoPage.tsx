@@ -17,7 +17,9 @@ const PromoPage = (): ReactElement => {
     (state: RootState) => state.applicationForm.successfulSubmit
   );
 
-  const parentRef = useArrowNavigation({ selectors: 'button' });
+  const parentRef = useArrowNavigation({
+    selectors: 'button, input[type="checkbox"]',
+  });
 
   return (
     <main className={styles.promo} ref={parentRef}>
