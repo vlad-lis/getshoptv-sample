@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
@@ -17,9 +17,33 @@ const PromoPage = (): ReactElement => {
     (state: RootState) => state.applicationForm.successfulSubmit
   );
 
+  // arrow navigation
   const parentRef = useArrowNavigation({
     selectors: 'button, input[type="checkbox"]',
   });
+
+  // inactivity timer
+  useEffect(() => {
+    let inactivityTimer: number;
+
+    const resetInactivityTimer = () => {
+      clearTimeout(inactivityTimer);
+      inactivityTimer = setTimeout(() => {
+        navigate('/');
+      }, 10000);
+    };
+
+    document.addEventListener('keydown', resetInactivityTimer);
+    document.addEventListener('click', resetInactivityTimer);
+
+    resetInactivityTimer();
+
+    return () => {
+      document.removeEventListener('keydown', resetInactivityTimer);
+      document.removeEventListener('click', resetInactivityTimer);
+      clearTimeout(inactivityTimer);
+    };
+  }, [navigate]);
 
   return (
     <main className={styles.promo} ref={parentRef}>
