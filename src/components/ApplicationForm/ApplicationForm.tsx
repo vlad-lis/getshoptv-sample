@@ -12,6 +12,7 @@ const ApplicationForm = (): ReactElement => {
 
   // state for valid number and valid form
   const [isNumberValid, setIsNumberValid] = useState(false);
+  const [isValidationDone, setIsValidationDone] = useState(false);
   const [isErrorShown, setIsErrorShown] = useState(false);
   const [isPdBtnChecked, setIsPdBtnChecked] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
@@ -65,6 +66,11 @@ const ApplicationForm = (): ReactElement => {
 
   // number validation function
   const runNumberValidation = async (number: string): Promise<void> => {
+    // exit if already run validation on current number
+    if (isValidationDone) {
+      return;
+    }
+
     const validationData = await validatePhoneNumber(number);
 
     if (
@@ -75,6 +81,7 @@ const ApplicationForm = (): ReactElement => {
       setPhoneInputClass(styles.form__phoneInput);
       setIsNumberValid(true);
       setIsErrorShown(false);
+      setIsValidationDone(true);
     } else {
       setPhoneInputClass(
         `${styles.form__phoneInput} ${styles.form__phoneInput_invalid}`
@@ -82,6 +89,7 @@ const ApplicationForm = (): ReactElement => {
       setIsNumberValid(false);
       setIsErrorShown(true);
       setIsPdBtnChecked(false);
+      setIsValidationDone(true);
     }
   };
 
@@ -123,6 +131,7 @@ const ApplicationForm = (): ReactElement => {
 
       // reset validation
       setIsNumberValid(false);
+      setIsValidationDone(false);
     }
   };
 
