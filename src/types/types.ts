@@ -9,3 +9,7 @@ export type TCloseBtnProps = {
 export type TButtonRefs = {
   [key: string]: React.RefObject<HTMLButtonElement>;
 };
+
+export type TBannerBtnProps = {
+  onClick: () => void;
+};

@@ -1,14 +1,8 @@
 import { ReactElement } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { TBannerBtnProps } from '../../types/types';
 import styles from './Banner.module.scss';
 
-const Banner = (): ReactElement => {
-  const navigate = useNavigate();
-
-  const handleButtonClick = (): void => {
-    navigate('/promo');
-  };
-
+const Banner = ({ onClick }: TBannerBtnProps): ReactElement => {
   return (
     <header className={styles.banner}>
       <h1 className={styles.banner__title}>
@@ -19,11 +13,7 @@ const Banner = (): ReactElement => {
       <p className={styles.banner__subtitle}>
         Сканируйте QR-код или нажмите ОК
       </p>
-      <button
-        className={styles.banner__btn}
-        type='button'
-        onClick={handleButtonClick}
-      >
+      <button className={styles.banner__btn} type='button' onClick={onClick}>
         ОК
       </button>
     </header>
