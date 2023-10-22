@@ -11,11 +11,11 @@ const ApplicationForm = (): ReactElement => {
   const dispatch = useDispatch();
 
   // state for valid number and valid form
-  const [isNumberValid, setIsNumberValid] = useState(false);
-  const [isValidationDone, setIsValidationDone] = useState(false);
-  const [isErrorShown, setIsErrorShown] = useState(false);
-  const [isPdBtnChecked, setIsPdBtnChecked] = useState(false);
-  const [isFormValid, setIsFormValid] = useState(false);
+  const [isNumberValid, setIsNumberValid] = useState<boolean>(false);
+  const [isValidationDone, setIsValidationDone] = useState<boolean>(false);
+  const [isErrorShown, setIsErrorShown] = useState<boolean>(false);
+  const [isPdBtnChecked, setIsPdBtnChecked] = useState<boolean>(false);
+  const [isFormValid, setIsFormValid] = useState<boolean>(false);
 
   // refs for setting focus on pushed button
   const buttonRefs: TButtonRefs = {

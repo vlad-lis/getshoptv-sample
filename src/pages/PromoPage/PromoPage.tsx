@@ -13,6 +13,7 @@ import BlackCloseBtn from '../../components/UI/BlackCloseBtn/BlackCloseBtn';
 const PromoPage = (): ReactElement => {
   const navigate = useNavigate();
 
+  // state to render component after submit success
   const successfulSubmit = useSelector(
     (state: RootState) => state.applicationForm.successfulSubmit
   );
