@@ -25,11 +25,11 @@ const PromoPage = (): ReactElement => {
 
   // inactivity timer
   useEffect(() => {
-    let inactivityTimer: number;
+    let inactivityTimer: number | undefined;
 
     const resetInactivityTimer = () => {
       clearTimeout(inactivityTimer);
-      inactivityTimer = setTimeout(() => {
+      inactivityTimer = window.setTimeout(() => {
         navigate('/');
       }, 10000);
     };

@@ -13,7 +13,7 @@ const store = configureStore({
 
 const App = (): ReactElement => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/getshoptv-task/'>
       <Provider store={store}>
         <RoutesComponent />
       </Provider>
